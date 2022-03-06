@@ -1,0 +1,22 @@
+{% extends 'favouriteBooks/base.html' %}
+{% block content %}
+<h1>Fav Books Center</h1>
+<h3>
+    Hello World, the time now in Nairobi is {{time}} <br>
+    Add your favourite books and vote for books added by your peers
+</h3>
+
+{% if fav_books %}
+<ul>
+    {% for book in fav_books %}
+    <div>
+        <h4>{{book.book_name}}</h4>
+        <p>By <small>{{book.book_authors}}</small></p>
+        <p>Category: {{book.category}}</p>
+    </div>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No books have been added. Be the first to add your favourite book.</p>
+{% endif %}
+{% endblock %}
