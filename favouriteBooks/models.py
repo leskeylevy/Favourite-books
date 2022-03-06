@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 
 # Create your models here.
-class favourite_books(models.Model):
+class Favourite_books(models.Model):
     """
     structure for our favourite books class/Object
     """
