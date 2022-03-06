@@ -1,8 +1,9 @@
-from django.http import HttpResponse
-from django.shortcuts import render
 import datetime
+from django.shortcuts import redirect, render
+from django.contrib import messages
 
-from favouriteBooks.models import Favourite_books
+from .models import Favourite_books
+from .forms import FavBooksForm
 
 
 # Create your views here.
@@ -17,3 +18,24 @@ def home(request):
         "time": timenow
     }
     return render(request, 'favouriteBooks/index.html', context)
+
+
+def add_fav_book(request):
+    """
+    Function that will handle create new fav_books
+    """
+    if request.method == 'POST':
+        fav_book_form = FavBooksForm(request.POST)
+        if fav_book_form.is_valid():
+            fav_book_form.save()
+            messages.success(request, ('Your Favourite Book has been added successfuly'))
+        else:
+            messages.error(request, 'There was an Error saving your Book')
+
+        return redirect('favouriteBooks/index.html')
+
+    context = {
+        
+    }
+    return render(request, 'favouriteBooks/add.html', context)
+            
