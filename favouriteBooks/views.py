@@ -12,5 +12,8 @@ def home(request):
     """
     fav_books = Favourite_books.objects.all()
     timenow = datetime.datetime.now().strftime("%H:%M:%S")
-    print(fav_books)
-    return HttpResponse(content=f'Hello World the time in Nairobi now is {timenow}')
+    context = {
+        'fav_books': fav_books,
+        "time": timenow
+    }
+    return render(request, 'favouriteBooks/index.html', context)
