@@ -9,4 +9,4 @@ class FavBooksForm(forms.ModelForm):
 
     class Meta:
         model = Favourite_books
-        fields = '__all__'
+        fields = ('book_name', 'book_authors', 'book_category')

@@ -1,0 +1,15 @@
+{% extends 'favouriteBooks/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}  
+<div class="container">
+    <h2>Add Favourite Book</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        
+        {{fav_book_form|crispy}}
+        <button type="submit">Add</button>
+    
+    </form> 
+</div>
+
+{% endblock %}
