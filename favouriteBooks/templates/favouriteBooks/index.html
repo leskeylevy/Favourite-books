@@ -2,12 +2,13 @@
 {% block content %}
 {% if fav_books %}
 
-<table class="table table-borderles">
+<table class="table table-borderles" style="color: cyan;">
     <thead class="border-bottom font-weight-bold">
         <tr>
             <td>Book Name</td>
             <td>Author</td>
             <td>Category</td>
+            <td>Likes</td>
             <td>
                 <a href="{% url 'add_fav_book' %}" class="btn text-secondary px-0">
                     <i class="fa-solid fa-circle-plus"></i> Add New
@@ -21,6 +22,11 @@
             <td>{{book.book_name}}</td>
             <td>{{book.book_authors}}</td>
             <td>{{book.book_category}}</td>
+            <td>
+                <a href="{% url 'like_book' book.id %}">
+                    <i class="fa-solid fa-thumbs-up"></i><strong>{{book.favourites}}</strong>
+                </a>
+            </td>
             <td>
                 <a href="{% url 'edit_fav_book' book.id %}" class="btn text-secondary px-0">
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -37,18 +43,10 @@
     </tbody>
 </table>
 
-<!-- <ul>
-    {% for book in fav_books %}
-    <div>
-        <h4>{{book.book_name}}</h4>
-        <p>By <small>{{book.book_authors}}</small></p>
-        <p>Category: {{book.book_category}}</p>
-        <p>Votes: {{book.favourites}}</p>
-    </div>
-    <a href="">click here</a>
-    {% endfor %}
-</ul> -->
 {% else %}
+<a href="{% url 'add_fav_book' %}" class="btn text-secondary px-0">
+    <i class="fa-solid fa-circle-plus"></i> Add New
+</a>
 <p>No books have been added. Be the first to add your favourite book.</p>
 {% endif %}
 {% endblock %}

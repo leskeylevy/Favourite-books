@@ -40,7 +40,7 @@ def fav_book_form(request,id=None):
 
     else:
         if id is None:
-            fav_book_form = FavBooksForm()
+            fav_book_form = FavBooksForm(request.POST)
         else:
             Favourite_book = Favourite_books.objects.get(pk=id)
             fav_book_form =FavBooksForm(request.POST, instance=Favourite_book)
@@ -61,5 +61,13 @@ def delete_fav_book(request,id):
     """"""
     Favourite_book = Favourite_books.objects.get(pk=id)
     Favourite_book.delete()
+
+    return redirect('home')
+
+def like_book(request,id):
+    """"""
+    Favourite_book = Favourite_books.objects.get(pk=id)
+    Favourite_book.favourites = Favourite_book.favourites + 1
+    Favourite_book.save()
 
     return redirect('home')
