@@ -1,0 +1,28 @@
+{% extends 'favouriteBooks/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}  
+<div class="container">
+    <h2>Add Favourite Book</h2>
+    <form action="" method="post" autocomplete="off">
+        {% csrf_token %}
+        {{fav_book_form | crispy}}
+
+        <div class="row">
+            <div class="col-md-8">
+                <button class="btn btn-success btn-block btn-long" type="submit"><i class="fa-solid fa-floppy-disk"></i> New Book</button>
+            </div>
+            <div class="col-md-4">
+       
+                <a href="{% url 'home' %}" class="btn btn-secondary btn-block btn-long">
+                    <i class="fa-solid fa-house"></i>
+                    Back Home
+                </a>
+
+            </div>
+        </div>
+
+    
+    </form> 
+</div>
+
+{% endblock %}
