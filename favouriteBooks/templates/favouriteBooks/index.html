@@ -1,13 +1,43 @@
 {% extends 'favouriteBooks/base.html' %}
 {% block content %}
-<h1>Fav Books Center</h1>
-<h3>
-    Hello World, the time now in Nairobi is {{time}} <br>
-    Add your favourite books and vote for books added by your peers
-</h3>
-
 {% if fav_books %}
-<ul>
+
+<table class="table table-borderles">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Book Name</td>
+            <td>Author</td>
+            <td>Category</td>
+            <td>
+                <a href="{% url 'add_fav_book' %}" class="btn text-secondary px-0">
+                    <i class="fa-solid fa-circle-plus"></i> Add New
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in fav_books %}
+        <tr>
+            <td>{{book.book_name}}</td>
+            <td>{{book.book_authors}}</td>
+            <td>{{book.book_category}}</td>
+            <td>
+                <a href="{% url 'edit_fav_book' book.id %}" class="btn text-secondary px-0">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'delete_fav_book' book.id %}" class="btn text-secondary px-0">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
+            </td>
+        </tr>
+            
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- <ul>
     {% for book in fav_books %}
     <div>
         <h4>{{book.book_name}}</h4>
@@ -15,8 +45,9 @@
         <p>Category: {{book.book_category}}</p>
         <p>Votes: {{book.favourites}}</p>
     </div>
+    <a href="">click here</a>
     {% endfor %}
-</ul>
+</ul> -->
 {% else %}
 <p>No books have been added. Be the first to add your favourite book.</p>
 {% endif %}

@@ -1,6 +1,6 @@
 from django import forms
 
-from favouriteBooks.models import Favourite_books
+from .models import Favourite_books
 
 class FavBooksForm(forms.ModelForm):
     """
@@ -10,3 +10,10 @@ class FavBooksForm(forms.ModelForm):
     class Meta:
         model = Favourite_books
         fields = ('book_name', 'book_authors', 'book_category')
+        labels = {
+            "book_name": 'Favourite book',
+            "book_authors": "Author",
+            "book_category": "Category"
+        }
+
+    
